@@ -2,8 +2,8 @@ import streamlit as st
 import requests
 
 # Replace 'YOUR_APP_ID' and 'YOUR_API_KEY' with your actual Edamam API credentials
-APP_ID = 'YOUR_APP_ID'
-API_KEY = 'YOUR_API_KEY'
+APP_ID = '6caff4e6'
+API_KEY = '8b9a7c2ed9ad88d54e8ae13b88bbf7a3'
 
 # Base URL for the Edamam Recipe Search API
 BASE_URL = 'https://api.edamam.com/search'

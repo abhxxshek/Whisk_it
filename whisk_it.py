@@ -44,7 +44,7 @@ def main():
     st.title("Recipe Generator")
 
     ingredient = st.text_input("Enter an ingredient:", "chicken")
-    if st.button("Search"):
+    if st.button("Search", key="search_button"):
         recipes = fetch_recipes(ingredient)
         if recipes:
             st.write(f"Top 10 {ingredient.capitalize()} Recipes:")
@@ -54,7 +54,7 @@ def main():
             st.error("Error fetching recipes. Please try again later.")
 
     from_index = 0
-    while st.button("Load More Recipes"):
+    while st.button("Load More Recipes", key="load_more_button"):
         from_index += 10
         recipes = fetch_recipes(ingredient, from_index)
         if not recipes:
@@ -64,11 +64,11 @@ def main():
             st.write(f"{i+from_index+1}. {recipe['recipe']['label']}")
 
     selected_recipe_index = st.number_input("Enter the number corresponding to the recipe you'd like to explore:", 1, from_index+10)
-    if st.button("View Recipe"):
+    if st.button("View Recipe", key="view_recipe_button"):
         selected_recipe = recipes[selected_recipe_index - 1 - from_index]
         display_recipe_details(selected_recipe)
 
-    if st.button("View Cooking Method"):
+    if st.button("View Cooking Method", key="view_cooking_method_button"):
         selected_recipe = recipes[selected_recipe_index - 1 - from_index]
         cooking_method_url = selected_recipe['recipe']['url']
         st.components.v1.html(f'<a href="{cooking_method_url}" target="_blank"><button>View Cooking Method</button></a>', height=50)

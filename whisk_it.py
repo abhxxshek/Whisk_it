@@ -63,15 +63,17 @@ def main():
         for i, recipe in enumerate(recipes):
             st.write(f"{i+from_index+1}. {recipe['recipe']['label']}")
 
-    selected_recipe_index = st.number_input("Enter the number corresponding to the recipe you'd like to explore:", 1, from_index+10)
-    if st.button("View Recipe", key="view_recipe_button"):
-        selected_recipe = recipes[selected_recipe_index - 1 - from_index]
-        display_recipe_details(selected_recipe)
+    if recipes:  # Check if recipes is not empty before accessing it
+        selected_recipe_index = st.number_input("Enter the number corresponding to the recipe you'd like to explore:", 1, from_index+10)
+        if st.button("View Recipe", key="view_recipe_button"):
+            selected_recipe = recipes[selected_recipe_index - 1 - from_index]
+            display_recipe_details(selected_recipe)
 
-    if st.button("View Cooking Method", key="view_cooking_method_button"):
-        selected_recipe = recipes[selected_recipe_index - 1 - from_index]
-        cooking_method_url = selected_recipe['recipe']['url']
-        st.components.v1.html(f'<a href="{cooking_method_url}" target="_blank"><button>View Cooking Method</button></a>', height=50)
+        if st.button("View Cooking Method", key="view_cooking_method_button"):
+            selected_recipe = recipes[selected_recipe_index - 1 - from_index]
+            cooking_method_url = selected_recipe['recipe']['url']
+            st.write("Click below to view the cooking method:")
+            st.markdown(f"[View Cooking Method]({cooking_method_url})")
 
 if __name__ == "__main__":
     main()

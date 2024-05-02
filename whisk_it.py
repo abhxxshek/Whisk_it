@@ -7,6 +7,7 @@ API_KEY = '8b9a7c2ed9ad88d54e8ae13b88bbf7a3'
 
 # Base URL for the Edamam Recipe Search API
 BASE_URL = 'https://api.edamam.com/search'
+x=input("enter:")
 
 # Function to fetch recipes based on user input
 def fetch_recipes(ingredient, from_index=0):

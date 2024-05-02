@@ -44,6 +44,8 @@ def main():
     st.title("Recipe Generator")
 
     ingredient = st.text_input("Enter an ingredient:", "chicken")
+    recipes = None  # Initialize recipes variable
+
     if st.button("Search", key="search_button"):
         recipes = fetch_recipes(ingredient)
         if recipes:
@@ -63,7 +65,7 @@ def main():
         for i, recipe in enumerate(recipes):
             st.write(f"{i+from_index+1}. {recipe['recipe']['label']}")
 
-    if recipes:  # Check if recipes is not empty before accessing it
+    if recipes is not None:  # Check if recipes is not None before accessing it
         selected_recipe_index = st.number_input("Enter the number corresponding to the recipe you'd like to explore:", 1, from_index+10)
         if st.button("View Recipe", key="view_recipe_button"):
             selected_recipe = recipes[selected_recipe_index - 1 - from_index]
